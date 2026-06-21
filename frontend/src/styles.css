@@ -1,0 +1,62 @@
+/* 全局样式 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f0f2f5;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  padding: 24px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1890ff;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #8c8c8c;
+  margin-top: 8px;
+}
+
+.money-positive {
+  color: #52c41a;
+}
+
+.money-negative {
+  color: #ff4d4f;
+}
+
+.traceable-cell {
+  cursor: pointer;
+  color: #1890ff;
+  text-decoration: underline;
+}

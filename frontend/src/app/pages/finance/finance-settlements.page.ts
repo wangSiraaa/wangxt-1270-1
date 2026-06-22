@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SettlementService } from '../../services/settlement.service';
-import { DeductionService } from '../../services/deduction.service';
-import { PolicyService } from '../../services/policy.service';
-import { AuthService } from '../../services/auth.service';
+import { SettlementService } from '../services/settlement.service';
+import { DeductionService } from '../services/deduction.service';
+import { PolicyService } from '../services/policy.service';
+import { AuthService } from '../services/auth.service';
 import {
   MonthlySettlementDto, SettlementQueryDto, PreTaxDeductionDto,
-  CreatePreTaxDeductionDto, User, Policy, CreatePolicyDto
-} from '../../models';
+  CreatePreTaxDeductionDto, User, Policy, CreatePolicyDto, ClawbackRecordDto
+} from '../models';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
@@ -137,7 +137,7 @@ export class FinanceSettlementsPage implements OnInit {
   queryForm: FormGroup;
   settlements: MonthlySettlementDto[] = [];
   deductions: PreTaxDeductionDto[] = [];
-  clawbacks: any[] = [];
+  clawbacks: ClawbackRecordDto[] = [];
   allUsers: User[] = [];
   agents: User[] = [];
   defaultMonth: string;

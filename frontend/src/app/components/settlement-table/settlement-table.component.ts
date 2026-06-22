@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MonthlySettlementDto, SettlementSnapshotDto } from '../../models';
-import { SettlementService } from '../../services/settlement.service';
+import { MonthlySettlementDto, SettlementSnapshotDto } from '../models';
+import { SettlementService } from '../services/settlement.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 

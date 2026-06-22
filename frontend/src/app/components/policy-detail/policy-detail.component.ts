@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Policy } from '../../models';
-import { PolicyService } from '../../services/policy.service';
+import { Policy } from '../models';
+import { PolicyService } from '../services/policy.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({

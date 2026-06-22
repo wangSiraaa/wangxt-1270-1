@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PolicyService } from '../../services/policy.service';
-import { SettlementService } from '../../services/settlement.service';
-import { Policy, MonthlySettlementDto, PolicyQueryDto } from '../../models';
+import { PolicyService } from '../services/policy.service';
+import { SettlementService } from '../services/settlement.service';
+import { Policy, MonthlySettlementDto, PolicyQueryDto } from '../models';
 
 @Component({
   selector: 'app-agent-policies',

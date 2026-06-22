@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { Policy, User, AdjustAllocationDto, AllocationRuleDto, CreateAllocationRuleDetailDto } from '../../models';
-import { AllocationService } from '../../services/allocation.service';
-import { AuthService } from '../../services/auth.service';
+import { Policy, User, AdjustAllocationDto, AllocationRuleDto, CreateAllocationRuleDetailDto } from '../models';
+import { AllocationService } from '../services/allocation.service';
+import { AuthService } from '../services/auth.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
@@ -197,22 +197,33 @@ export class AllocationAdjustComponent implements OnInit {
   }
 
   submitAdjustment(): void {
+    if (this.form.invalid) {
+      this.msg.warning('请完整填写表单');
+      return;
+    }
+    if (Math.abs(this.getTotalRatio() - 1.0) > 0.0001) {
+      this.msg.error('分摊比例之和必须等于 100%');
+      return;
+    }
+
+    const detailList: CreateAllocationRuleDetailDto[] = this.details.controls.map(ctrl => ({
+      userId: ctrl.get('userId')?.value,
+      allocationRatio: Number(ctrl.get('allocationRatio')?.value) || 0,
+      roleType: ctrl.get('roleType')?.value || 'Other'
+    }));
+
     const dto: AdjustAllocationDto = {
       policyId: this.policy.policyId,
       adjustmentReason: this.form.get('adjustmentReason')?.value,
       effectiveFromDate: this.form.get('effectiveFromDate')?.value,
-      newDetails: this.details.controls.map(ctrl => ({
-        userId: ctrl.get('userId')?.value,
-        allocationRatio: Number(ctrl.get('allocationRatio')?.value) || 0,
-        roleType: ctrl.get('roleType')?.value
-      }) as CreateAllocationRuleDetailDto[])
+      newDetails: detailList
     };
 
     this.allocationService.adjust(dto).subscribe(res => {
       if (res.success) {
         this.msg.success('分摊比例调整成功，历史结算不会被修改');
       } else {
-        this.msg.error(res.message);
+        this.msg.error(res.message || '调整失败');
       }
     });
   }
